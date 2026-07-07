@@ -12,9 +12,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
             text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
         }
         .container {
             background-color: #252538;
@@ -34,20 +36,32 @@
             font-size: 1.1rem;
             margin-bottom: 30px;
         }
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
         .btn {
-            display: inline-block;
-            padding: 15px 30px;
-            background-color: #a6e3a1;
+            display: block;
+            padding: 15px 20px;
             color: #11111b;
             text-decoration: none;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             border-radius: 8px;
-            transition: background 0.2s ease;
+            transition: background 0.2s ease, transform 0.1s ease;
         }
-        .btn:hover {
-            background-color: #94e2d5;
+        .btn:active {
+            transform: scale(0.98);
         }
+        .btn-linux { background-color: #a6e3a1; }
+        .btn-linux:hover { background-color: #94e2d5; }
+        
+        .btn-windows { background-color: #89b4fa; }
+        .btn-windows:hover { background-color: #b4befe; }
+        
+        .btn-macos { background-color: #f9e2af; }
+        .btn-macos:hover { background-color: #f5e0dc; }
     </style>
 </head>
 <body>
@@ -55,8 +69,12 @@
     <div class="container">
         <h1>🐱 Flappycat 🐱</h1>
         <p>Flappycat official website for our small game.</p>
-        <!-- This button links to your instructions page -->
-        <a href="instructions.html" class="btn">Download for Linux / Raspberry Pi</a>
+        
+        <div class="btn-group">
+            <a href="linux-instructions.html" class="btn btn-linux">Download for Linux / Raspberry Pi</a>
+            <a href="windows-instructions.html" class="btn btn-windows">Download for Windows</a>
+            <a href="macos-instructions.html" class="btn btn-macos">Download for macOS</a>
+        </div>
     </div>
 
 </body>
