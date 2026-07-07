@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappycat - Installation Instructions</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        h1 { color: #f5c2e7; text-align: center; margin-bottom: 5px; }
+        h2 { color: #b4befe; text-align: center; font-weight: normal; margin-top: 0; margin-bottom: 30px; }
+        .warning {
+            background-color: #f38ba8;
+            color: #11111b;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .back-link {
+            display: inline-block;
+            color: #89b4fa;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .back-link:hover { text-decoration: underline; }
+        ol { padding-left: 20px; }
+        li { margin-bottom: 25px; font-size: 1.1rem; }
+        code {
+            background-color: #11111b;
+            padding: 3px 6px;
+            border-radius: 4px;
+            color: #f38ba8;
+            font-family: monospace;
+        }
+        pre {
+            background-color: #11111b;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-top: 10px;
+            border: 1px solid #45475a;
+        }
+        pre code { color: #a6e3a1; padding: 0; background: none; }
+        .sub-step {
+            list-style-type: none;
+            padding-left: 15px;
+            margin-top: 8px;
+            color: #a6adc8;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-link">← Back to Home</a>
+
+    <h1>flappy-cat-flatpak</h1>
+    <h2>Flappy Cat but flatpak! Linux and Raspberry Pi Game port.</h2>
+
+    <div class="warning">
+        ⚠️ Welcome! Thank you for installing our small raspberry pi game!<br>
+        ⚠️ Make sure you have aarch64! To check, open Terminal and run: uname -m. Or else it won't work!
+    </div>
+
+    <p style="text-align: center; color: #a6adc8; font-style: italic; margin-bottom: 30px;">
+        - Manual Installation, Download game only on the website -
+    </p>
+
+    <ol>
+        <li>
+            Open terminal and paste:
+            <pre><code>git clone https://github.com</code></pre>
+        </li>
+        <li>
+            Then, paste in this command to check for flatpak:
+            <pre><code>flatpak remote-add --if-not-exists flathub https://flathub.org</code></pre>
+        </li>
+        <li>
+            Then, install the .yml SDK if missing:
+            <pre><code>flatpak install flathub org.freedesktop.Sdk/aarch64/23.08</code></pre>
+            <div class="sub-step">-- Then / Or, install User Scope: <code>flatpak install --user flathub org.freedesktop.Sdk/aarch64/23.08</code></div>
+            <div class="sub-step">-- And System Scope: <code>sudo flatpak install flathub org.freedesktop.Sdk/aarch64/23.08</code></div>
+        </li>
+        <li>
+            Then, verify SDK installation by running:
+            <pre><code>flatpak list --runtime | grep 23.08</code></pre>
+        </li>
+        <li>
+            Then, paste in:
+            <pre><code>cd flappy-cat-flatpak</code></pre>
+        </li>
+        <li>
+            Update and install builder:
+            <pre><code>sudo apt update && sudo apt install -y flatpak-builder</code></pre>
+        </li>
+        <li>
+            Then, paste in to build:
+            <pre><code>flatpak-builder --force-clean build-dir org.playarz.flappycat.yml</code></pre>
+        </li>
+        <li>
+            Then, paste in this command to install app:
+            <pre><code>flatpak-builder --user --install --force-clean build-dir org.playarz.flappycat.yml</code></pre>
+        </li>
+        <li>
+            If you want it to appear in the system as an app, do:
+            <div class="sub-step" style="padding-left: 0; color: #cdd6f4; font-size: 1.1rem; margin-bottom: 5px;">-- If never installed flatpak before, do:</div>
+            <pre><code>sudo update-desktop-database ~/.local/share/applications/</code></pre>
+            <div class="sub-step" style="padding-left: 0; color: #cdd6f4; font-size: 1.1rem; margin-top: 15px; margin-bottom: 5px;">-- If ever installed any flatpak, do:</div>
+            <pre><code>sudo reboot</code></pre>
+            <div class="sub-step">(Both commands will make the app appear but the app icon is for now systematic - a gear icon or else.)</div>
+        </li>
+        <li>
+            Lastly, paste in this command to run:
+            <pre><code>flatpak run org.playarz.flappycat</code></pre>
+        </li>
+    </ol>
+
+    <h2 style="color: #a6e3a1; margin-top: 40px;"># Enjoy! 🎉</h2>
+
+</body>
+</html>
